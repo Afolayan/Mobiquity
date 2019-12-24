@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="image_card_height">300dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="card_corner_radius">3dp</dimen>
+    <dimen name="margin_24">24dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+    <dimen name="text_24">24sp</dimen>
+    <dimen name="text_28">28sp</dimen>
+    <dimen name="margin_4">4dp</dimen>
+</resources>

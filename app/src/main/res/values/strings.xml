@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Mobcategories</string>
+    <string name="retry">Retry</string>
+    <string name="product_list">Product List</string>
+    <string name="product_detail">Product Detail</string>
+    <string name="product_image">Product Image</string>
+</resources>
