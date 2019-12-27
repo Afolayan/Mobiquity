@@ -24,7 +24,7 @@ code navigation & modularity.
 ## Tests
 This app was built with testability in mind.
 
-- The `ViewModel`, `Repository` and DataHelper classes used in this task were unit tested with `Mockito`.
+- The `ViewModel`, `Repository` and `DataHelper` classes used in this task were unit tested with `Mockito`.
   Dependencies have been injected where possible to be substituted with Mocks.
 
 - Espresso was also used to Test the project view files
