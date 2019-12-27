@@ -1,10 +1,8 @@
 package com.oluwafemi.mobcategories.ui.product.vm
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.gson.Gson
 import com.oluwafemi.mobcategories.data.MobCategoryRepository
 import com.oluwafemi.mobcategories.data.remote.DataState
 import com.oluwafemi.mobcategories.ui.product.model.CategoryDataHelper
@@ -19,14 +17,13 @@ class ProductVM @Inject constructor(
 
     private var _categoryState = MutableLiveData<DataState>()
     private var disposable = CompositeDisposable()
-    private var itemList = mutableListOf<ProductTypeAndData>()
+    var itemList = mutableListOf<ProductTypeAndData>()
 
     val dataState: LiveData<DataState>
         get() = _categoryState
 
     init {
         _categoryState.value = DataState.Loading
-        retrieveData()
     }
 
     fun retrieveData() {
@@ -36,7 +33,6 @@ class ProductVM @Inject constructor(
                 .subscribeOn(appScheduler.io())
                 .subscribe(
                     { categoryData ->
-                        Log.e("PVM", "categData == ${Gson().toJson(categoryData)}")
                         val productList = CategoryDataHelper.getProductTypeDataList(categoryData, itemList)
                         _categoryState.value = DataState.Success(productList)
                     },

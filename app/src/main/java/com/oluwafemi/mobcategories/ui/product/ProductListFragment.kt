@@ -16,7 +16,6 @@ import com.oluwafemi.mobcategories.ui.product.vm.ProductVM
 import com.oluwafemi.mobcategories.ui.shared.PagesFragment
 import com.oluwafemi.mobcategories.util.Constants
 import com.oluwafemi.mobcategories.util.ImageLoader
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.product_list.*
 import kotlinx.android.synthetic.main.progress_layout.*
 import javax.inject.Inject
@@ -25,8 +24,8 @@ class ProductListFragment: PagesFragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject lateinit var imageLoader: ImageLoader
+    @Inject lateinit var adapter: ProductRecyclerViewAdapter
     private lateinit var viewModel: ProductVM
-    lateinit var adapter: ProductRecyclerViewAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.product_list, container, false)
@@ -36,6 +35,7 @@ class ProductListFragment: PagesFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)[ProductVM::class.java]
+        viewModel.retrieveData()
         observeViewModelValue()
         setupRecyclerView()
     }
@@ -51,7 +51,6 @@ class ProductListFragment: PagesFragment() {
     }
 
     private fun setupRecyclerView() {
-        adapter = ProductRecyclerViewAdapter(imageLoader)
         recycler_view.adapter = adapter
 
         val layoutManager = GridLayoutManager(context, 2)
@@ -65,7 +64,11 @@ class ProductListFragment: PagesFragment() {
 
         }
         recycler_view.layoutManager = layoutManager
+        goToDetailView()
 
+    }
+
+    private fun goToDetailView() {
         adapter.onItemClick = {product ->
             Bundle().apply {
                 putParcelable(Constants.DATA_KEY, product)
@@ -86,8 +89,7 @@ class ProductListFragment: PagesFragment() {
 
     private fun displayErrorMessage(errorMessage: String) {
         progress_bar.visibility = View.GONE
-        val snackbar = Snackbar.make(container, errorMessage, Snackbar.LENGTH_LONG)
-        with(snackbar) {
+        Snackbar.make(container, errorMessage, Snackbar.LENGTH_LONG).apply {
             setAction(getString(R.string.retry)) {
                 viewModel.retrieveData()
             }

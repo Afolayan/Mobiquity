@@ -7,6 +7,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
+        android:id="@+id/cd_list_row"
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/margin_4"
         app:cardElevation="@dimen/margin_4"
@@ -58,7 +59,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 style="@style/ItemSubTitleTheme"
-                android:textColor="@color/colorPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/tv_item_name"
                 app:layout_constraintHorizontal_bias="0.0"

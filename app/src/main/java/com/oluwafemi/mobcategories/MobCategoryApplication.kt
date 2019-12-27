@@ -1,8 +1,10 @@
 package com.oluwafemi.mobcategories
 
-import android.app.Activity
 import com.oluwafemi.mobcategories.di.component.DaggerAppComponent
-import dagger.android.*
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
 class MobCategoryApplication : DaggerApplication(), HasAndroidInjector {

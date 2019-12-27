@@ -25,6 +25,7 @@ android {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
+    kotlinOptions { jvmTarget = "1.8"}
 }
 
 dependencies {
@@ -37,6 +38,7 @@ dependencies {
     implementation "com.google.android.material:material:$material_version"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "androidx.fragment:fragment:$fragment_version"
 
     // dagger core
     implementation "com.google.dagger:dagger:$dagger_2_version"
@@ -77,5 +79,10 @@ dependencies {
     // androidTest
     androidTestImplementation "androidx.test.ext:junit:$junit_ext_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
-    androidTestImplementation "androidx.test:rules:$test_rules"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_version"
+    implementation "androidx.test:rules:$test_rules"
+    implementation "androidx.test:runner:$test_rules"
+    implementation "androidx.test:core:$test_rules"
+    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
+
 }
