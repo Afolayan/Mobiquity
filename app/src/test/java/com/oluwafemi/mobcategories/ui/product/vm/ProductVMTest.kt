@@ -72,7 +72,6 @@ class ProductVMTest {
 
         productVM = ProductVM(scheduler, categoryRepository)
         productVM.dataState.observeForever(observer)
-        productVM.retrieveData()
 
         verify(categoryRepository).retrieveCategories()
         verify(observer).onChanged(DataState.Error("Message: ${error.message}"))
@@ -89,9 +88,6 @@ class ProductVMTest {
         productVM = ProductVM(scheduler, categoryRepository)
         productVM.dataState.observeForever(observer)
 
-        productVM.retrieveData()
-
-        verify(observer).onChanged(DataState.Loading)
         verify(observer).onChanged(DataState.Success(
             CategoryDataHelper.getProductTypeDataList(Mocks.createCategories(), productVM.itemList)))
     }

@@ -15,7 +15,6 @@ import com.oluwafemi.mobcategories.ui.product.model.ProductTypeAndData
 import com.oluwafemi.mobcategories.ui.product.vm.ProductVM
 import com.oluwafemi.mobcategories.ui.shared.PagesFragment
 import com.oluwafemi.mobcategories.util.Constants
-import com.oluwafemi.mobcategories.util.ImageLoader
 import kotlinx.android.synthetic.main.product_list.*
 import kotlinx.android.synthetic.main.progress_layout.*
 import javax.inject.Inject
@@ -23,7 +22,6 @@ import javax.inject.Inject
 class ProductListFragment: PagesFragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
-    @Inject lateinit var imageLoader: ImageLoader
     @Inject lateinit var adapter: ProductRecyclerViewAdapter
     private lateinit var viewModel: ProductVM
 
@@ -35,7 +33,6 @@ class ProductListFragment: PagesFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)[ProductVM::class.java]
-        viewModel.retrieveData()
         observeViewModelValue()
         setupRecyclerView()
     }
@@ -64,11 +61,11 @@ class ProductListFragment: PagesFragment() {
 
         }
         recycler_view.layoutManager = layoutManager
-        goToDetailView()
+        initClickListener()
 
     }
 
-    private fun goToDetailView() {
+    private fun initClickListener() {
         adapter.onItemClick = {product ->
             Bundle().apply {
                 putParcelable(Constants.DATA_KEY, product)

@@ -24,6 +24,7 @@ class ProductVM @Inject constructor(
 
     init {
         _categoryState.value = DataState.Loading
+        retrieveData()
     }
 
     fun retrieveData() {

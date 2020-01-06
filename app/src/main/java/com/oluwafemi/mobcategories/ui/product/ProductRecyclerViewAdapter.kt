@@ -14,8 +14,10 @@ import com.oluwafemi.mobcategories.util.ImageLoader
 import com.oluwafemi.mobcategories.util.StringUtil.joinTwoStrings
 import javax.inject.Inject
 
-class ProductRecyclerViewAdapter @Inject constructor (private val imageLoader: ImageLoader) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ProductRecyclerViewAdapter @Inject constructor () : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    @Inject
+    lateinit var imageLoader: ImageLoader
     private val HEADER_ITEM_VIEW = 0
     private val PRODUCT_ITEM_VIEW = 1
     private val items = mutableListOf<ProductTypeAndData>()
